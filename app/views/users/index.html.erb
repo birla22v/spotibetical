@@ -1,1 +1,21 @@
-<h1> Welcome to Spotibetical </h1>
+<h1> Welcome to Spotibetical!</h1>
+<header>
+  <%= form_tag("user", method: "get") do %>
+  <%= text_field_tag(:query, params[:query], placeholder: "Look for a song!") %>
+  <%= submit_tag("Search") %>
+  <% end %>
+</header>
+<h3>Your search results...</h3>
+<% if @query %>
+  <ul>
+    <% @query.each do |song| %>
+    <% time = song.duration_ms%>
+    <% seconds=(time/1000)%60 %>
+    <% minutes=(time/(1000*60))%60 %>
+      <li><%=song.name%>....<%= song.artists[0].name %>....<%= song.album.name %>...<%=minutes%>:<%=seconds%></li>
+    <% end %>
+  </ul>
+<% end %>
+<% if @query.length.zero? %>
+  Sorry, no results found. 
+<% end %>
