@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rspotify'
 gem 'devise'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'pry-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
