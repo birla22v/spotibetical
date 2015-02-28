@@ -5,20 +5,7 @@
   <%= submit_tag("Search") %>
   <% end %>
 </header>
-<!-- <h3>Your search results...</h3>
-<% if @query %>
-  <ul>
-    <% @query.each do |song| %>
-    <% time = song.duration_ms%>
-    <% seconds=(time/1000)%60 %>
-    <% minutes=(time/(1000*60))%60 %>
-      <li><%=song.name%>....<%= song.artists[0].name %>....<%= song.album.name %>...<%=minutes%>:<%=seconds%>| <%=link_to "Add" %></li>
-    <% end %>
-  </ul>
-<% end %>
-<% if @query && @query.length.zero? %>
-  Sorry, no results found.
-<% end %> -->
+<% if user_signed_in? %>
 <h3> Your search results! </h3>
 <div class="container">
   <div class="row">
@@ -47,7 +34,11 @@
               <td><%= song.artists[0].name %></td>
               <td><%= song.album.name %></td>
               <td><%=minutes%>:<%=seconds%></td>
-              <td class="col-md-2"> <%= link_to "Add" %></td>
+              <td class="col-md-2"> <%= link_to("Add", songs_path(:song =>{
+                                                                  :user_id => current_user.id,
+                                                                  :name => song.name,
+                                                                  :artist => song.artists[0].name}),
+              method: :post) %></td>
             </tr>
             <% end %>
           <%end%>
@@ -56,6 +47,14 @@
     </div>
     <div class="col-md-5">
       <h3> Vote for songs here! </h3>
+      <% if @playlist %>
+        <% @playlist.each do |song| %>
+          <%=song.name%>
+        <%end%>
+      <%end%>
     </div>
   </div>
 </div>
+<% else %>
+<h4> You must login to continue </h4>
+<%end%>
