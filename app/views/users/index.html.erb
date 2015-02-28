@@ -38,17 +38,24 @@
             <% @query.each do |song| %>
             <% time = song.duration_ms%>
             <% seconds=(time/1000)%60 %>
+            <% if seconds < 10 %>
+              <% seconds = '0'+seconds.to_s %>
+            <% end %>
             <% minutes=(time/(1000*60))%60 %>
             <tr>
               <td><%=song.name%></td>
               <td><%= song.artists[0].name %></td>
               <td><%= song.album.name %></td>
               <td><%=minutes%>:<%=seconds%></td>
+              <td class="col-md-2"> <%= link_to "Add" %></td>
             </tr>
             <% end %>
           <%end%>
         </tbody>
       </table>
+    </div>
+    <div class="col-md-5">
+      <h3> Vote for songs here! </h3>
     </div>
   </div>
 </div>
