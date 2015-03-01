@@ -23,6 +23,17 @@ class SongsController < ApplicationController
     show
   end
 
+  def veto
+    if current_user.veto_remaining == 1
+      Song.destroy(Song.where(artist: song_params[:artist], name: song_params[:name]))
+      Song.create(user_id: song_params[:user_id],artist: song_params[:artist], name: song_params[:name], veto: true)
+      current_user.update_attribute(:veto_remaining, 0)
+     else
+      flash[:alert] = "You have no vetos remaining!"
+     end
+    render 'users/index'
+  end
+
   private
   def song_params
     params.require(:song).permit(:user_id, :name, :artist)

@@ -11,9 +11,6 @@ class User < ActiveRecord::Base
    def vote
    end
 
-   def veto
-   end
-
    def suggest
    end
 end

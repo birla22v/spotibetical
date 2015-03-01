@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228213127) do
+ActiveRecord::Schema.define(version: 20150301210620) do
 
   create_table "playlists", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150228213127) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "artist"
+    t.boolean  "veto"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150228213127) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "veto_remaining",         default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
