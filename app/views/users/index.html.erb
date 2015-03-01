@@ -34,11 +34,10 @@
               <td><%= song.artists[0].name %></td>
               <td><%= song.album.name %></td>
               <td><%=minutes%>:<%=seconds%></td>
-              <td class="col-md-2"> <%= link_to("Add", songs_path(:song =>{
+              <td class="col-md-2"> <%= button_to "Add", songs_path(song:{
                                                                   :user_id => current_user.id,
                                                                   :name => song.name,
-                                                                  :artist => song.artists[0].name}),
-              method: :post) %></td>
+                                                                  :artist => song.artists[0].name}) %></td>
             </tr>
             <% end %>
           <%end%>
@@ -47,11 +46,20 @@
     </div>
     <div class="col-md-5">
       <h3> Vote for songs here! </h3>
-      <% if @playlist %>
-        <% @playlist.each do |song| %>
-          <%=song.name%>
-        <%end%>
-      <%end%>
+      <table>
+        <tbody>
+          <% if Song.all %>
+            <% Song.all.each do |song| %>
+              <tr>
+                <td><%= song.name %></td>
+                <td><%= song.artist %></td>
+                <td> <%= button_to "Vote Up" %></td>
+                <td> <%= button_to "Veto" %></td>
+              </tr>
+            <%end%>
+          <%end%>
+        </tbody>
+    </table>
     </div>
   </div>
 </div>
