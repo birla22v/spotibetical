@@ -34,7 +34,7 @@
               <td><%= song.artists[0].name %></td>
               <td><%= song.album.name %></td>
               <td><%=minutes%>:<%=seconds%></td>
-              <td class="col-md-2"> <%= button_to "Add", songs_path(song:{
+              <td class="col-md-2"> <%= button_to "+", songs_path(song:{
                                                                   :user_id => current_user.id,
                                                                   :name => song.name,
                                                                   :artist => song.artists[0].name}) %></td>
@@ -53,8 +53,8 @@
               <tr>
                 <td><%= song.name %></td>
                 <td><%= song.artist %></td>
-                <td> <%= button_to "Vote Up" %></td>
-                <td> <%= button_to "Veto" %></td>
+                <td> <%= button_to "\u2191" %></td>
+                <td> <%= button_to "x" %></td>
               </tr>
             <%end%>
           <%end%>

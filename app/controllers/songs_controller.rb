@@ -7,9 +7,10 @@ class SongsController < ApplicationController
 
   def submit
     isthere = 0
-    count = Song.count
+    songs = Song.all
+    count = songs.count
     count.times do |i|
-      s=Song.find(i+1)
+    s = songs[i]
       if s.artist == song_params[:artist] && s.name == song_params[:name]
         flash[:alert] = "Song is already in the playlist!"
         isthere = 1
@@ -17,7 +18,7 @@ class SongsController < ApplicationController
       end
     end
     if isthere!=1
-      @song = Song.create(song_params)    
+      @song = Song.create(song_params)
     end
     show
   end
