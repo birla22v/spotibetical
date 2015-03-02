@@ -1,0 +1,19 @@
+<h2> Playlist this week <h3>
+<table>
+  <thead>
+    <tr>
+      <td> SONGS </td>
+      <td> ARTIST </td>
+      <td> VOTES </td>
+    </tr>
+  </thead>
+  <tbody>
+    <%@new_playlist3.each do |array| %>
+      <tr>
+        <td><%=array[1]%></td>
+        <td><%=array[2]%></td>
+        <td><%=array[0]%></td>
+      </tr>
+      <%end%>
+  </tbody>
+</table>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "users_veto" => "users#veto"
   post "song_veto" => "songs#veto"
   post "song_vote" => "songs#vote"
+  get "/playlist" => "playlists#show"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
