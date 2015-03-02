@@ -34,6 +34,17 @@ class SongsController < ApplicationController
     render 'users/index'
   end
 
+  def vote
+    song = Song.where(artist:song_params[:artist],name:song_params[:name])
+    if current_user.votes.count < 15
+     vote = current_user.votes.create(song_id:song[0].id)
+     flash[:notice] = "You have #{15-current_user.votes.count} remaining"
+   else
+     flash[:alert] = "You have reached your maximum number of votes"
+   end
+   render 'users/index'
+  end
+
   private
   def song_params
     params.require(:song).permit(:user_id, :name, :artist)

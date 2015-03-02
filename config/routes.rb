@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/songs' => "songs#submit"
   post "users_veto" => "users#veto"
   post "song_veto" => "songs#veto"
+  post "song_vote" => "songs#vote"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
