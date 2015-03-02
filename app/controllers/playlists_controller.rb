@@ -23,11 +23,15 @@ class PlaylistsController < ApplicationController
     if @new_playlist.length == 1
       @new_playlist2+=@new_playlist
     end
-    (@new_playlist2.length-1).times do |i|
+    (@new_playlist2.length).times do |i|
       if i.odd?
         @new_playlist3+=[@new_playlist2[i]]
       end
     end
+    if @new_playlist.length == 1
+      @new_playlist3+= [@new_playlist[0][1]]
+    end
+
 
 
   end
